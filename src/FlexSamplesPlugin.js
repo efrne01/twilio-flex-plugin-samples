@@ -34,11 +34,11 @@ export default class FlexSamplesPlugin extends FlexPlugin {
     // Color Scheme is changed in public/appConfig.js - More Details: https://www.twilio.com/docs/flex/developer/ui/overview-of-flex-ui-programmability-options#theming-flex-ui
 
     // Use Case 4: CRM - iFrame
-    /*flex.CRMContainer.defaultProps.uriCallback = (task) => {
-      return task
-        ? `https://www.bing.com/search?q=${task.attributes.name}`
-        : "https://www.bing.com";
-    };*/
+    // flex.CRMContainer.defaultProps.uriCallback = (task) => {
+    //   return task
+    //     ? `https://www.bing.com/search?q=${task.attributes.name}`
+    //     : "https://www.bing.com";
+    // };
 
     // Use Case 5: CRM - Custom
     flex.AgentDesktopView.Panel2.Content.replace(<CRM key="test" />, {

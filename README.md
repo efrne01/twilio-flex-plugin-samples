@@ -4,6 +4,8 @@ This GitHub repository contains common code snippets for customizing Twilio Flex
 
 _Note: All sample use cases are based on Flex UI 2.x_
 
+![Sample](docs/Main.png)
+
 ## Table of Content
 
 1. [Pre-Requisites](#pre-requisites)
@@ -48,12 +50,16 @@ flex.setProviders({
 
 # Use Case 2: Modify Logo
 
+![Modify Logo](docs/Modify_logo.png)
+
 ```
 flex.MainHeader.defaultProps.logoUrl =
       "https://idreamleaguesoccerkits.com/wp-content/uploads/2017/12/barcelona-logo.png";
 ```
 
 # Use Case 3: Customize Color Scheme
+
+![Customize Color Scheme](docs/Customize_Color_Scheme.png)
 
 Under `public/appConfig.js`, add the following:
 
@@ -69,6 +75,8 @@ theme: {
 
 # Use Case 4: iFrame CRM in Flex
 
+![iFrame CRM](docs/iFrame_CRM.png)
+
 ```
 flex.CRMContainer.defaultProps.uriCallback = (task) => {
     return task
@@ -78,6 +86,8 @@ flex.CRMContainer.defaultProps.uriCallback = (task) => {
 ```
 
 # Use Case 5: Custom CRM in Flex
+
+![Custom CRM](docs/Custom_CRM.png)
 
 Create a new React component (Example is in `/src/components/CRM.js`)
 
@@ -91,11 +101,15 @@ flex.AgentDesktopView.Panel2.Content.replace(<CRM key="test" />, {
 
 # Use Case 6: Add custom data into default Task Info Panel
 
+![Custom Data](docs/Custom_Data.png)
+
 ```
 manager.strings.TaskInfoPanelContent += `\n<p>Custom Data</p>Hello World! You can access task variables as well using placeholders. Example of Task Name: {{task.attributes.name}}`;
 ```
 
 # Use Case 7: Add custom tab
+
+![Custom Tab](docs/Custom_Tab.png)
 
 Create a new React component (Example is in `/src/components/CustomTab.js`)
 
@@ -110,6 +124,8 @@ flex.TaskCanvasTabs.Content.add(
 ```
 
 # Use Case 8: Forced SIP Call via Flex Native Dialpad
+
+![Forced SIP](docs/Forced_SIP.png)
 
 ```
 flex.Actions.replaceAction("StartOutboundCall", (payload, original) => {
