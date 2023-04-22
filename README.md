@@ -50,7 +50,7 @@ flex.setProviders({
 
 # Use Case 2: Modify Logo
 
-![Modify Logo](docs/Modify_logo.png)
+![Modify Logo](docs/Modify_Logo.png)
 
 ```
 flex.MainHeader.defaultProps.logoUrl =
