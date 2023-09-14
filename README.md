@@ -40,21 +40,21 @@ _Note: All sample use cases are based on Flex UI 2.x_
 
 [Twilio Paste](https://paste.twilio.design/) is a UI Framework used to build accessible, cohesive, and high-quality customer experiences at Twilio.
 
-```
+```javascript
 import { CustomizationProvider } from "@twilio-paste/core/customization";
 
 flex.setProviders({
-      PasteThemeProvider: CustomizationProvider,
-    });
+  PasteThemeProvider: CustomizationProvider,
+});
 ```
 
 # Use Case 2: Modify Logo
 
 ![Modify Logo](docs/Modify_Logo.png)
 
-```
+```javascript
 flex.MainHeader.defaultProps.logoUrl =
-      "https://idreamleaguesoccerkits.com/wp-content/uploads/2017/12/barcelona-logo.png";
+  "https://idreamleaguesoccerkits.com/wp-content/uploads/2017/12/barcelona-logo.png";
 ```
 
 # Use Case 3: Customize Color Scheme
@@ -63,7 +63,7 @@ flex.MainHeader.defaultProps.logoUrl =
 
 Under `public/appConfig.js`, add the following:
 
-```
+```json
 theme: {
     tokens: {
       backgroundColors: {
@@ -77,11 +77,11 @@ theme: {
 
 ![iFrame CRM](docs/iFrame_CRM.png)
 
-```
+```javascript
 flex.CRMContainer.defaultProps.uriCallback = (task) => {
-    return task
-        ? `https://www.bing.com/search?q=${task.attributes.name}`
-        : "https://www.bing.com";
+  return task
+    ? `https://www.bing.com/search?q=${task.attributes.name}`
+    : "https://www.bing.com";
 };
 ```
 
@@ -91,11 +91,11 @@ flex.CRMContainer.defaultProps.uriCallback = (task) => {
 
 Create a new React component (Example is in `/src/components/CRM.js`)
 
-```
+```javascript
 import CRM from "./components/CRM";
 
 flex.AgentDesktopView.Panel2.Content.replace(<CRM key="test" />, {
-    sortOrder: -1,
+  sortOrder: -1,
 });
 ```
 
@@ -103,7 +103,7 @@ flex.AgentDesktopView.Panel2.Content.replace(<CRM key="test" />, {
 
 ![Custom Data](docs/Custom_Data.png)
 
-```
+```javascript
 manager.strings.TaskInfoPanelContent += `\n<p>Custom Data</p>Hello World! You can access task variables as well using placeholders. Example of Task Name: {{task.attributes.name}}`;
 ```
 
@@ -113,13 +113,13 @@ manager.strings.TaskInfoPanelContent += `\n<p>Custom Data</p>Hello World! You ca
 
 Create a new React component (Example is in `/src/components/CustomTab.js`)
 
-```
+```javascript
 import { Tab } from "@twilio/flex-ui";
 
 flex.TaskCanvasTabs.Content.add(
-    <Tab label="Custom" key="custom-tab-key">
-        <CustomTab key="custom-tab" />
-    </Tab>
+  <Tab label="Custom" key="custom-tab-key">
+    <CustomTab key="custom-tab" />
+  </Tab>
 );
 ```
 
@@ -127,8 +127,8 @@ flex.TaskCanvasTabs.Content.add(
 
 ![Forced SIP](docs/Forced_SIP.png)
 
-```
- // -- Start Optional: Mask SIP Dialstring from Task within Flex Agent Interface
+```javascript
+// -- Start Optional: Mask SIP Dialstring from Task within Flex Agent Interface
 flex.Manager.getInstance().strings.TaskLineOutboundCallHeader =
   "{{task.attributes.name}}";
 // -- End Optional: Mask SIP Dialstring from Task within Flex Agent Interface
@@ -141,9 +141,9 @@ flex.Actions.replaceAction("StartOutboundCall", (payload, original) => {
   // -- End Optional: Mask SIP Dialstring from Task within Flex Agent Interface
   // Default all outbound calls to external SIP interface
   /*
-    * Instructions:
-    * Replace "sipInterfaceIPAddress" with external SIP Interface
-    */
+   * Instructions:
+   * Replace "sipInterfaceIPAddress" with external SIP Interface
+   */
   const sipInterfaceIPAddress = "xxx.xxx.xxxx.xxx";
   payload.destination =
     "sip:" + payload.destination + `@${sipInterfaceIPAddress}`;
