@@ -55,8 +55,18 @@ export default class FlexSamplesPlugin extends FlexPlugin {
       </Tab>
     );
 
-    // Use Case X: Force SIP call via Flex Native Dialpad
+    // Use Case 8: Force SIP call via Flex Native Dialpad
+    // -- Start Optional: Mask SIP Dialstring from Task within Flex Agent Interface
+    flex.Manager.getInstance().strings.TaskLineOutboundCallHeader =
+      "{{task.attributes.name}}";
+    // -- End Optional: Mask SIP Dialstring from Task within Flex Agent Interface
     flex.Actions.replaceAction("StartOutboundCall", (payload, original) => {
+      // -- Start Optional: Mask SIP Dialstring from Task within Flex Agent Interface
+      const originalNumber = payload.destination;
+      payload.taskAttributes = {
+        name: originalNumber,
+      };
+      // -- End Optional: Mask SIP Dialstring from Task within Flex Agent Interface
       // Default all outbound calls to external SIP interface
       /*
        * Instructions:

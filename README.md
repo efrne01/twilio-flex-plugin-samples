@@ -128,17 +128,27 @@ flex.TaskCanvasTabs.Content.add(
 ![Forced SIP](docs/Forced_SIP.png)
 
 ```
+ // -- Start Optional: Mask SIP Dialstring from Task within Flex Agent Interface
+flex.Manager.getInstance().strings.TaskLineOutboundCallHeader =
+  "{{task.attributes.name}}";
+// -- End Optional: Mask SIP Dialstring from Task within Flex Agent Interface
 flex.Actions.replaceAction("StartOutboundCall", (payload, original) => {
-      // Default all outbound calls to external SIP interface
-      /*
-       * Instructions:
-       * Replace "sipInterfaceIPAddress" with external SIP Interface
-       */
-      const sipInterfaceIPAddress = "xxx.xxx.xxxx.xxx";
-      payload.destination =
-        "sip:" + payload.destination + `@${sipInterfaceIPAddress}`;
-      payload.callerId = "+xxxxxxxx";
-      console.log("updated outbound call to:", payload);
-      original(payload);
-    });
+  // -- Start Optional: Mask SIP Dialstring from Task within Flex Agent Interface
+  const originalNumber = payload.destination;
+  payload.taskAttributes = {
+    name: originalNumber,
+  };
+  // -- End Optional: Mask SIP Dialstring from Task within Flex Agent Interface
+  // Default all outbound calls to external SIP interface
+  /*
+    * Instructions:
+    * Replace "sipInterfaceIPAddress" with external SIP Interface
+    */
+  const sipInterfaceIPAddress = "xxx.xxx.xxxx.xxx";
+  payload.destination =
+    "sip:" + payload.destination + `@${sipInterfaceIPAddress}`;
+  payload.callerId = "+xxxxxxxx";
+  console.log("updated outbound call to:", payload);
+  original(payload);
+});
 ```
